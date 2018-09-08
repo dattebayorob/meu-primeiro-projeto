@@ -26,8 +26,8 @@ public class Lancamento implements Serializable{
 	private static final long serialVersionUID = 2054461809557855476L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="data", nullable=false)
@@ -50,11 +50,11 @@ public class Lancamento implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

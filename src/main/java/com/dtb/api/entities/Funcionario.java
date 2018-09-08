@@ -8,19 +8,20 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
-import com.dtb.api.entities.enums.PerfilEnum;
+import com.dtb.api.security.entities.Usuario;
+
 
 @Entity
 @Table(name = "funcionario")
@@ -32,41 +33,34 @@ public class Funcionario implements Serializable {
 	private static final long serialVersionUID = -5623487373218067928L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
-	@Column(name = "f_nome", nullable = false)
-	private String name;
-	@Column(name = "f_email", nullable = false)
-	private String email;
-	@Column(name = "f_senha", nullable = false)
-	private String senha;
-	@Column(name = "f_cpf", nullable = false)
+	@Column(name = "nome", nullable = false)
+	private String nome;
+	@Column(name = "cpf", nullable = false)
 	private String cpf;
-	@Column(name = "f_valor_hora", nullable = true)
+	@Column(name = "valor_hora", nullable = true)
 	private BigDecimal valorHora;
-	@Column(name = "f_horas_trabalho_dia", nullable = true)
+	@Column(name = "horas_trabalho_dia", nullable = true)
 	private Float qtdHorasTrabalhadoDia;
-	@Column(name = "f_horas_almoco", nullable = true)
+	@Column(name = "horas_almoco", nullable = true)
 	private Float qtdHorasAlmoco;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "f_perfil", nullable = false)
-	private PerfilEnum perfil;
-
-	@Column(name = "f_data_criacao", nullable = false)
+	@Column(name = "data_criacao", nullable = false)
 	private Date dataCriacao;
-	@Column(name = "f_data_atualizacao", nullable = false)
+	@Column(name = "data_atualizacao", nullable = false)
 	private Date dataAtualizacao;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Empresa empresa;
-
+	
 	@OneToMany(mappedBy = "funcionario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Lancamento> lancamentos;
-
+	
 	public Funcionario() {
 		// TODO Auto-generated constructor stub
 	}
+
 
 	public Long getId() {
 		return Id;
@@ -76,28 +70,12 @@ public class Funcionario implements Serializable {
 		Id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getCpf() {
@@ -130,14 +108,6 @@ public class Funcionario implements Serializable {
 
 	public void setQtdHorasAlmoco(Float qtdHorasAlmoco) {
 		this.qtdHorasAlmoco = qtdHorasAlmoco;
-	}
-
-	public PerfilEnum getPerfil() {
-		return perfil;
-	}
-
-	public void setPerfil(PerfilEnum perfil) {
-		this.perfil = perfil;
 	}
 
 	public Date getDataCriacao() {

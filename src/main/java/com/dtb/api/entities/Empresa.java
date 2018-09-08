@@ -28,8 +28,8 @@ public class Empresa  implements Serializable{
 	private static final long serialVersionUID = -142875434814909875L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
 	@Column(name="razao_social", nullable=false)
 	private String razaoSocial;
 	@Column(name="cnpj", nullable = false)
@@ -54,11 +54,11 @@ public class Empresa  implements Serializable{
 	}
 	
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

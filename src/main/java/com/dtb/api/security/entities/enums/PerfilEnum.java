@@ -1,4 +1,4 @@
-package com.dtb.api.entities.enums;
+package com.dtb.api.security.entities.enums;
 
 public enum PerfilEnum {
 	ROLE_ADMIN,
