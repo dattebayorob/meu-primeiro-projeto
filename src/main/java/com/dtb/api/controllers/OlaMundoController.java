@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api/empresas")
-public class EmpresaController {
+@RequestMapping("/api/olaMundo")
+public class OlaMundoController {
 	
 	@GetMapping(value= "/{nome}")
 	@PreAuthorize(value="hasAnyRole('ADMIN')")
